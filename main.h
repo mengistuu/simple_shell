@@ -65,18 +65,33 @@ int delete_node_index(list_t **head, int index);
 /* shell.c */
 int shell(list_t *env_list, char *shell_name);
 char *get_input(void);
-void print_error(char *shell_name, char *message);
+void print_error(char **error_message);
 void prompt(void);
 void free_input(char *input, list_t *input_list, char **input_array);
 int execute(char **input_array, char *command, char *shell_name);
+void error_message_init(char **error_message, char *shell_name, char *command);
 
-/* built_i.c */
+/* built.c */
 int get_built(list_t *input_list, char *shell_name, list_t *env_list);
 int exit_shell(list_t *input_list, char *shell_name, list_t **env_list_ptr);
 int env_func(list_t *input_list, char *shell_name, list_t **env_list_ptr);
 int setenv_func(list_t *input_list, char *shell_name, list_t **env_list_ptr);
 int unsetenv_func(list_t *input_list, char *shell_name, list_t **env_list_ptr);
 
+/* which.c */
+char *get_full_name(char *name, list_t *env_list);
+char *get_full_path(char *filename, list_t *path_list);
+char *create_path(char *dir, char *filename);
+int is_command(char *filename);
 
+/* strings.c */
+char *_strcpy(char *dest, const char *src);
+unsigned int _strlen(const char *str);
+int _strcmp(const char *s1, const char *s2);
+char *_strdup(const char *str);
+char *_strtok(char *str, const char *delim);
+int is_in_str(const char *str, char c);
+int _atoi(char *str);
+void str_rep(char *str, char c1, char c2);
 
 #endif
